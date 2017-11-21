@@ -3,8 +3,8 @@ services:
   web:
     build: ./web
     image: gettingstarteddocker_web:latest
-    # volumes:
-    #   - ~/development/nodejs/getting-started-docker/web/src:/var/www/portal
+    volumes:
+      - "./web/src:/var/www/portal"
     deploy:
       mode: replicated
       replicas: 1
@@ -17,8 +17,8 @@ services:
   microservice:
     build: ./microservice
     image: gettingstarteddocker_microservice:latest
-    # volumes:
-    #   - ~/development/nodejs/getting-started-docker/microservice:/microservice
+    volumes:
+      - "./microservice:/microservice"
     deploy:
       mode: replicated
       replicas: 5
@@ -26,6 +26,19 @@ services:
         condition: on-failure
     ports:
       - "3000:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    networks:
+      - webnet
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - "/data/db/mongo:/data/db"
+    tty: true
     networks:
       - webnet
 networks:

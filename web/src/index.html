@@ -11,11 +11,35 @@
     </nav>
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <h1>Attendance</h1>
-          <h5>Host: <span js-target="host"></span></h5>
-          <ul class="list-group" js-target="attendance-list">
-          </ul>
+        <h5>Host: <span js-target="host"></span></h5>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card" style="width: 20rem;">
+            <div class="card-body">
+              <h4 class="card-title">Attendance List</h4>
+              <ul class="list-group" js-target="attendance-list">
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card" style="width: 20rem;">
+            <div class="card-body">
+              <h4 class="card-title">New Attendance</h4>
+              <form>
+                <div class="form-group">
+                  <label for="attendanceName">Name:</label>
+                  <input type="text" class="form-control" id="attendanceName" placeholder="Name">
+                </div>
+                <div class="form-group">
+                  <label for="attendanceAge">Age:</label>
+                  <input type="number" class="form-control" id="attendanceAge" placeholder="Age">
+                </div>
+                <button id="submit" type="button" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
