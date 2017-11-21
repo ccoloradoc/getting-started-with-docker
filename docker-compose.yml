@@ -1,0 +1,32 @@
+version: "3"
+services:
+  web:
+    build: ./web
+    image: gettingstarteddocker_web:latest
+    # volumes:
+    #   - ~/development/nodejs/getting-started-docker/web/src:/var/www/portal
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+  microservice:
+    build: ./microservice
+    image: gettingstarteddocker_microservice:latest
+    # volumes:
+    #   - ~/development/nodejs/getting-started-docker/microservice:/microservice
+    deploy:
+      mode: replicated
+      replicas: 5
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "3000:3000"
+    networks:
+      - webnet
+networks:
+  webnet:

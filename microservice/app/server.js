@@ -15,7 +15,7 @@ app.get('/', (request, response) => {
     attendance: [
       { name: 'Cristian Colorado', age: '32' },
       { name: 'Julen Ibarra', age: '25' },
-      { name: 'Luis Yacuta', age: '25' }
+      { name: 'Luis Yacuta', age: '25' },
       { name: 'Matt Rocha', age: '25' }
     ]
   })
