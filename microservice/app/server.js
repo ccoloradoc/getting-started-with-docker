@@ -12,13 +12,7 @@ mongoose.connect("mongodb://mongo:27017/list")
 app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });
-
-app.get('/', (request, response) => {
+app.get('/attendance', (request, response) => {
   Attendance.find({}, { _id: 1, name: 1, age: 1} , (err, attendance) => {
     if (err) throw err;
     response.json({
@@ -28,7 +22,7 @@ app.get('/', (request, response) => {
   });
 })
 
-app.post('/', (request, response) => {
+app.post('/attendance', (request, response) => {
   var attendance  = new Attendance(request.body);
 
   attendance.save((err) => {

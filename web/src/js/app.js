@@ -12,7 +12,7 @@ $(document).ready(function() {
 
   $('#submit').click(() => {
     $.ajax({
-      url: 'http://192.168.99.100:3000',
+      url: '/api/attendance',
       type: "POST",
       data: {
         name: $("#attendanceName").val(),
@@ -30,7 +30,7 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url: 'http://192.168.99.100:3000',
+    url: '/api/attendance',
     type: "GET",
     crossDomain: true,
     dataType: "json",

@@ -10,8 +10,6 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-    ports:
-      - "80:80"
     networks:
       - webnet
   microservice:
@@ -24,8 +22,6 @@ services:
       replicas: 5
       restart_policy:
         condition: on-failure
-    ports:
-      - "3000:3000"
     links:
       - mongo
     depends_on:
@@ -39,6 +35,18 @@ services:
     volumes:
       - "/data/db/mongo:/data/db"
     tty: true
+    networks:
+      - webnet
+  gateway:
+    build: ./nginx
+    volumes:
+      - ./data/log/nginx:/var/log/nginx/
+      - ./nginx/services:/etc/nginx/conf.d/
+    links:
+      - web
+      - microservice
+    ports:
+      - "80:80"
     networks:
       - webnet
 networks:
